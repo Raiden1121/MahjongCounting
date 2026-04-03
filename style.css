@@ -1,0 +1,427 @@
+:root {
+  --bg-color: #f5f7fa;
+  --panel-bg: #ffffff;
+  --text-primary: #2c3e50;
+  --text-secondary: #7f8c8d;
+  --border-color: #e2e8f0;
+  
+  --suit-black: #2c3e50;
+  --suit-red: #e74c3c;
+  
+  --card-bg: #ffffff;
+  --card-border: #dcdde1;
+  
+  --win-color: #27ae60;
+  --lose-color: #e74c3c;
+  --tie-color: #f39c12;
+  
+  --primary-color: #3498db;
+  --primary-hover: #2980b9;
+  --danger-color: #e74c3c;
+  --danger-hover: #c0392b;
+  --secondary-color: #95a5a6;
+}
+
+[data-theme="dark"] {
+  --bg-color: #1a1e23;
+  --panel-bg: #2c3036;
+  --text-primary: #ecf0f1;
+  --text-secondary: #bdc3c7;
+  --border-color: #4a5568;
+  
+  --suit-black: #ecf0f1;
+  --suit-red: #ff7675;
+  
+  --card-bg: #34495e;
+  --card-border: #2c3e50;
+  
+  --win-color: #2ecc71;
+  --lose-color: #ff7675;
+  --tie-color: #f1c40f;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-primary);
+  transition: background-color 0.3s, color 0.3s;
+  padding: 20px;
+}
+
+header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+header h1 {
+  font-size: 2.2rem;
+  margin-bottom: 10px;
+}
+
+header p {
+  color: var(--text-secondary);
+}
+
+.container {
+  display: grid;
+  grid-template-columns: 350px 1fr;
+  gap: 25px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* 兩大區域 */
+.left-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.right-panel {
+  display: flex;
+  flex-direction: column;
+}
+
+.card-box {
+  background-color: var(--panel-bg);
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  border: 1px solid var(--border-color);
+}
+
+.card-box h3, section h2 {
+  margin-bottom: 15px;
+  font-size: 1.2rem;
+  color: var(--text-primary);
+  border-bottom: 2px solid var(--border-color);
+  padding-bottom: 8px;
+}
+
+/* 結果區 */
+.result-dashboard {
+  background-color: var(--panel-bg);
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.08);
+  border: 1px solid var(--border-color);
+}
+
+.result-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.result-item {
+  text-align: center;
+  background: var(--bg-color);
+  padding: 10px;
+  border-radius: 8px;
+}
+
+.result-item .label {
+  display: block;
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  margin-bottom: 5px;
+}
+
+.result-item .value {
+  display: block;
+  font-size: 1.4rem;
+  font-weight: bold;
+}
+
+.final-result-card {
+  text-align: center;
+  padding: 20px;
+  border-radius: 8px;
+  background: var(--bg-color);
+  transition: all 0.3s;
+  border: 2px solid transparent;
+}
+
+.final-title {
+  font-size: 1.1rem;
+  color: var(--text-secondary);
+  margin-bottom: 10px;
+}
+
+.final-amount {
+  font-size: 2.2rem;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
+.final-hint {
+  margin-top: 10px;
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+}
+
+.final-result-card.win {
+  background-color: rgba(39, 174, 96, 0.1);
+  border-color: var(--win-color);
+  color: var(--win-color);
+}
+
+.final-result-card.lose {
+  background-color: rgba(231, 76, 60, 0.1);
+  border-color: var(--lose-color);
+  color: var(--lose-color);
+}
+
+.final-result-card.tie {
+  background-color: rgba(243, 156, 18, 0.1);
+  border-color: var(--tie-color);
+  color: var(--tie-color);
+}
+
+/* 控制區 */
+.control-group {
+  margin-bottom: 15px;
+}
+.control-group label {
+  display: block;
+  font-size: 0.95rem;
+  margin-bottom: 5px;
+}
+.control-group input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  background-color: var(--bg-color);
+  color: var(--text-primary);
+  font-size: 1.1rem;
+}
+
+.button-group {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+.button-group > :last-child {
+  grid-column: 1 / span 2;
+}
+
+.btn {
+  padding: 10px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.95rem;
+  font-weight: 600;
+  transition: all 0.2s;
+  color: white;
+}
+.btn:hover {
+  transform: translateY(-2px);
+}
+.btn:active {
+  transform: translateY(0);
+}
+.btn-primary { background-color: var(--primary-color); }
+.btn-primary:hover { background-color: var(--primary-hover); }
+
+.btn-danger { background-color: var(--danger-color); }
+.btn-danger:hover { background-color: var(--danger-hover); }
+
+.btn-secondary { background-color: var(--secondary-color); }
+.btn-secondary:hover { opacity: 0.9; }
+
+/* 摘要區 */
+.empty-state {
+  color: var(--text-secondary);
+  text-align: center;
+  padding: 20px 0;
+  font-style: italic;
+}
+.selected-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 15px;
+  min-height: 50px;
+}
+.mini-card {
+  padding: 4px 8px;
+  border-radius: 4px;
+  border: 1px solid var(--card-border);
+  background: var(--card-bg);
+  font-weight: bold;
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  cursor: pointer;
+}
+.mini-card:hover {
+  text-decoration: line-through;
+  opacity: 0.7;
+}
+.mini-card.black { color: var(--suit-black); }
+.mini-card.red { color: var(--suit-red); }
+
+.selected-stats {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.stat-badge {
+  background: var(--bg-color);
+  padding: 3px 8px;
+  border-radius: 12px;
+  border: 1px solid var(--border-color);
+}
+
+/* 選牌區 */
+.section-header {
+  margin-bottom: 15px;
+}
+
+.deck-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(70px, 1fr));
+  gap: 12px;
+  background-color: var(--panel-bg);
+  padding: 24px;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  border: 1px solid var(--border-color);
+}
+
+.poker-card {
+  aspect-ratio: 2.5 / 3.5;
+  background-color: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 6px;
+  cursor: pointer;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.06);
+  transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  position: relative;
+  overflow: hidden;
+  user-select: none;
+}
+
+.poker-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 12px rgba(0,0,0,0.1);
+}
+
+.poker-card.selected {
+  border-color: var(--primary-color);
+  background-color: rgba(52, 152, 219, 0.1);
+  transform: scale(0.95);
+  box-shadow: 0 0 0 2px var(--primary-color);
+}
+
+.poker-card.black { color: var(--suit-black); }
+.poker-card.red { color: var(--suit-red); }
+
+.card-top {
+  align-self: flex-start;
+  line-height: 1;
+  font-size: 1.1rem;
+  font-weight: bold;
+}
+.card-center {
+  align-self: center;
+  font-size: 2rem;
+  line-height: 1;
+}
+.card-bottom {
+  align-self: flex-end;
+  line-height: 1;
+  transform: rotate(180deg);
+  font-size: 1.1rem;
+  font-weight: bold;
+}
+
+.selected-overlay {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(52, 152, 219, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--primary-color);
+  font-size: 2.5rem;
+  font-weight: bold;
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+
+.poker-card.selected .selected-overlay {
+  opacity: 1;
+}
+
+/* Toast */
+#toast-container {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.toast {
+  background-color: rgba(44, 62, 80, 0.9);
+  color: white;
+  padding: 12px 24px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  font-weight: bold;
+  animation: slideDown 0.3s ease-out forwards;
+  opacity: 1;
+  transition: opacity 0.5s;
+}
+.toast.hide {
+  opacity: 0;
+}
+
+@keyframes slideDown {
+  from { transform: translateY(-20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+/* RWD */
+@media (max-width: 900px) {
+  .container {
+    grid-template-columns: 1fr;
+  }
+  .left-panel {
+    order: -1;
+  }
+}
+
+@media (max-width: 480px) {
+  .deck-grid {
+    grid-template-columns: repeat(auto-fill, minmax(60px, 1fr));
+    padding: 15px;
+    gap: 8px;
+  }
+  .card-center {
+    font-size: 1.5rem;
+  }
+  .card-top, .card-bottom {
+    font-size: 0.9rem;
+  }
+}

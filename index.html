@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>麻將撲克牌算點工具</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <div id="toast-container"></div>
+
+  <header>
+    <h1>麻將撲克牌算點工具</h1>
+    <p>點選手牌，自動計算總點數與輸贏金額，不用再燒腦算分數！</p>
+  </header>
+
+  <main class="container">
+    <div class="left-panel">
+      <!-- 結算即時面板 -->
+      <section class="result-dashboard">
+        <h2>結算結果</h2>
+        <div class="result-grid">
+          <div class="result-item">
+            <span class="label">已選牌數</span>
+            <span class="value" id="val-cards-count">0</span>
+          </div>
+          <div class="result-item">
+            <span class="label">總點數</span>
+            <span class="value" id="val-total-points">0</span>
+          </div>
+          <div class="result-item">
+            <span class="label">差額</span>
+            <span class="value" id="val-diff">0</span>
+          </div>
+        </div>
+
+        <div class="final-result-card" id="final-result-card">
+          <div class="final-title">最終結果</div>
+          <div class="final-amount" id="final-amount">請先選牌</div>
+          <div class="final-hint" id="final-hint">目前距離 100 點還差 100 點</div>
+        </div>
+      </section>
+
+      <!-- 控制面板 -->
+      <section class="controls-panel card-box">
+        <h3>控制台</h3>
+        <div class="control-group">
+          <label for="input-unit-price">每點金額 (元)：</label>
+          <input type="number" id="input-unit-price" value="10" min="0" step="1">
+        </div>
+        <div class="button-group">
+          <button id="btn-clear" class="btn btn-danger">🗑️ 清空全部</button>
+          <button id="btn-copy" class="btn btn-primary">📋 複製結果</button>
+          <button id="btn-theme" class="btn btn-secondary">🌙 深色模式</button>
+        </div>
+      </section>
+
+      <!-- 已選牌摘要 -->
+      <section class="selected-summary card-box">
+        <h3>已選牌摘要</h3>
+        <div id="selected-cards-list" class="selected-list">
+          <div class="empty-state">尚未選擇任何牌</div>
+        </div>
+        <div id="selected-stats" class="selected-stats"></div>
+      </section>
+    </div>
+
+    <div class="right-panel">
+      <!-- 選牌區 -->
+      <section class="card-selection">
+        <div class="section-header">
+          <h2>點擊選牌</h2>
+        </div>
+        <div id="deck-container" class="deck-grid">
+          <!-- 牌面動態產生在這裡 -->
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+
+</html>
